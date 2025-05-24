@@ -1,9 +1,18 @@
 import { Stack } from "expo-router";
-import React from "react";
+import { StatusBar } from "react-native";
 import "./global.css";
 
-const _layout = () => {
-  return <Stack />;
-};
-
-export default _layout;
+export default function RootLayout() {
+  return (
+    <>
+      <StatusBar hidden={true} />
+      <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)">
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="search" />
+        {/* <Stack.Screen name="(pokemon)" /> */}
+        {/* <Stack.Screen name="movie/[id]" /> */}
+        <Stack.Screen name="index" />
+      </Stack>
+    </>
+  );
+}
