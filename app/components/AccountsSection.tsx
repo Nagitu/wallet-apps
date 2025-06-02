@@ -1,6 +1,8 @@
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
+
+import accounts from "../../assets/data/accounts.json";
 
 const AccountsSection = () => {
   return (
@@ -12,31 +14,32 @@ const AccountsSection = () => {
         </Pressable>
       </View>
 
-      {/* section list account card and amount */}
-      <View className="flex flex-row justify-between ">
-        <View className="flex flex-row justify-between mt-5">
-          <View className="flex flex-row gap-2 p-2 rounded-lg items-center ">
+      <FlatList
+        data={accounts}
+        renderItem={({ item }) => (
+          <View className="flex flex-row items-center gap-2 p-2 mt-5 rounded-lg bg-white">
             <View className="rounded-xl bg-red-500 p-3">
-              <FontAwesome5 name="wallet" size={20} />
+              <FontAwesome5 name="wallet" size={20} color="white" />
             </View>
             <View className="flex flex-col">
-              <Text className="text-sm">Account Bank</Text>
-              <Text className="text-sm">Rp.4000.000</Text>
+              <Text className="text-sm font-medium">{item.name}</Text>
+              <Text className="text-sm text-gray-600">
+                Rp.{item.balance.toLocaleString()}
+              </Text>
             </View>
           </View>
-        </View>
-        <View className="flex flex-row justify-between mt-5 px-5">
-          <View className="flex flex-row gap-2 p-2 rounded-lg items-center ">
-            <View className="rounded-xl bg-blue-500 p-3">
-              <FontAwesome5 name="wallet" size={20} />
-            </View>
-            <View className="flex flex-col">
-              <Text className="text-sm">Account Bank</Text>
-              <Text className="text-sm">Rp.4000.000</Text>
-            </View>
-          </View>
-        </View>
-      </View>
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+          paddingTop: 10,
+          justifyContent: "space-between",
+          flexDirection: "row",
+          gap: 10,
+        }}
+        keyExtractor={(item, index) => index.toString()}
+      />
     </View>
   );
 };

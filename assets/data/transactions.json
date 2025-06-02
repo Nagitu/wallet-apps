@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Makan siang",
+    "categoryId": 1,
+    "type": "expense",
+    "source": 2,
+    "value": 30000,
+    "createdAt": "2025-05-01T13:00:00Z",
+    "updatedAt": "2025-05-01T13:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Naik ojek",
+    "categoryId": 2,
+    "type": "expense",
+    "source": 2,
+    "value": 15000,
+    "createdAt": "2025-05-02T09:00:00Z",
+    "updatedAt": "2025-05-02T09:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Gaji Bulanan",
+    "categoryId": 3,
+    "type": "income",
+    "source": 1,
+    "value": 5000000,
+    "createdAt": "2025-05-01T08:00:00Z",
+    "updatedAt": "2025-05-01T08:00:00Z"
+  }
+]

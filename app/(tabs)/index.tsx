@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import accounts from "../../assets/data/accounts.json";
 import AccountsSection from "../components/AccountsSection";
 import CashFlowSection from "../components/CashFlowSection";
 
@@ -16,7 +17,7 @@ export default function Index() {
   const router = useRouter();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [filters, setFilters] = useState<string>("");
-
+  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
   return (
     <View className="flex-1 bg-slate-100">
       <ScrollView
@@ -39,12 +40,23 @@ export default function Index() {
           <View className="flex flex-row justify-between mt-5 px-5">
             <View>
               <Text className="text-xl font-bold text-black">
-                Rp 40.000.000
+                Rp {Math.abs(totalBalance).toLocaleString("id-ID")}
               </Text>
-              <Text className="text-sm font-normal">
-                <Text className="text-red-600">-Rp 40.000.000 </Text>
-                <Text className="text-black">May 2025</Text>
-              </Text>
+              <View className="flex flex-row items-center gap-2">
+                <FontAwesome
+                  name={`long-arrow-${totalBalance < 0 ? "down" : "up"}`}
+                  color={`${totalBalance < 0 ? "red" : "green"}`}
+                />
+                <Text
+                  className={`text-sm font-normal ${
+                    totalBalance < 0 ? "text-red-600" : "text-green-600"
+                  }`}
+                >
+                  {totalBalance < 0 && "-"}Rp{" "}
+                  {Math.abs(totalBalance).toLocaleString("id-ID")}
+                </Text>
+                <Text className="text-sm font-normal text-black">May 2025</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -79,7 +91,7 @@ export default function Index() {
                 </Pressable>
               </View>
               <View className="border-t border-gray-300 my-3 mx-5" />
-              {["Bank", "wallet"].map((item, i) => (
+              {accounts.map((item, i) => (
                 <View
                   className="  flex flex-row justify-between items-center mt-2 py-5 px-10"
                   key={i}
@@ -87,18 +99,22 @@ export default function Index() {
                   <View className="flex flex-row gap-2">
                     <FontAwesome name="check" size={20} color="green" />
                     <Text className="text-neutral-500 text-md text-lg">
-                      {item}
+                      {item.name}
                     </Text>
                   </View>
                   <Pressable
-                    onPress={() => setFilters(filters === item ? "" : item)}
+                    onPress={() =>
+                      setFilters(filters === item.name ? "" : item.name)
+                    }
                   >
                     <View
                       className={`border-2 border-black h-6 w-6 items-center ${
-                        filters === item ? "bg-blue-500" : ""
+                        filters === item.name ? "bg-blue-500" : ""
                       }`}
                     >
-                      {filters === item && <Text className="font-bold">✓</Text>}
+                      {filters === item.name && (
+                        <Text className="font-bold">✓</Text>
+                      )}
                     </View>
                   </Pressable>
                 </View>

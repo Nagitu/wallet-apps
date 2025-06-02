@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Makanan & Minuman",
+    "type": "expense"
+  },
+  {
+    "id": 2,
+    "name": "Transportasi",
+    "type": "expense"
+  },
+  {
+    "id": 3,
+    "name": "Gaji",
+    "type": "income"
+  }
+]

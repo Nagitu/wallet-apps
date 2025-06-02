@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Bank BCA",
+    "balance": 4000000,
+    "createdAt": "2024-12-01T08:00:00Z",
+    "updatedAt": "2025-05-01T12:30:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Dompet",
+    "balance": 500000,
+    "createdAt": "2024-12-10T10:00:00Z",
+    "updatedAt": "2025-04-29T09:15:00Z"
+  }
+]

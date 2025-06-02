@@ -5,6 +5,7 @@ import {
   FlatList,
   Modal,
   Pressable,
+  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -21,7 +22,7 @@ const Transactions = () => {
 
   const options = ["Income", "Expense", "Transfer"];
   return (
-    <View className="flex-1 bg-slate-100">
+    <SafeAreaView className="flex-1 bg-slate-100">
       <View className="bg-white mt-20 p-4 flex-row items-center justify-between">
         <Pressable
           onPress={() => router.push("/search")}
@@ -64,7 +65,10 @@ const Transactions = () => {
           </View>
 
           {Array.from({ length: 5 }).map((_, index) => (
-            <View className="flex flex-row justify-between px-5 mt-5">
+            <View
+              className="flex flex-row justify-between px-5 mt-5"
+              key={index}
+            >
               <View className="flex-row gap-2 items-center">
                 <View className="bg-blue-500 rounded-xl p-3">
                   <FontAwesome5 name="wallet" size={20} />
@@ -239,7 +243,7 @@ const Transactions = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
